@@ -1,0 +1,19 @@
+IF DB_ID('MiniBlogDb') IS NULL
+BEGIN
+    CREATE DATABASE MiniBlogDb;
+END
+GO
+
+USE MiniBlogDb;
+GO
+
+IF OBJECT_ID('dbo.BlogPost', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.BlogPost (
+        Id INT IDENTITY PRIMARY KEY,
+        Title NVARCHAR(200) NOT NULL,
+        Content NVARCHAR(MAX) NOT NULL,
+        CreatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME()
+    );
+END
+GO
