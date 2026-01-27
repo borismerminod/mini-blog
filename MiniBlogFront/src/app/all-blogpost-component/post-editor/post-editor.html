@@ -1,0 +1,18 @@
+<div>
+    <form id="post-editor-form" action="">
+        <div class="post-editor-row">
+            <label for="post-editor-title">Title</label>
+            <input id="post-editor-title" type="text" value="{{title}}">
+        </div>
+        <div class="post-editor-row">
+             <label for="post-editor-date">Creation date</label>
+            <input id="post-editor-date" type="text" value="{{createdAt}}">
+        </div>
+        <div class="post-editor-row">
+            <label for="post-editor-content">Content</label>
+            <textarea id="post-editor-content" value="{{content}}"></textarea>
+        </div>
+        <button id="post-editor-save">Save</button>
+        <button id="post-editor-save" (click)="onCloseClicked($event)">Close</button>
+    </form>
+</div>
