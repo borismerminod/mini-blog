@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogPost, BlogPostTs } from '../services/blog-post';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-all-blogpost-component',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   standalone: true,
   templateUrl: './all-blogpost-component.html',
   styleUrl: './all-blogpost-component.scss',
@@ -38,6 +39,11 @@ export class AllBlogpostComponent {
     });
 
     
+  }
+
+  debug()
+  {
+    console.log("HELLO")
   }
   
 

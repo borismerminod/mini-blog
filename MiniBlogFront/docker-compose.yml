@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  front:
+    image: mini-blog-front
+    container_name: mini-blog-front
+    ports:
+      - "8080:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+    restart: unless-stopped
+ 

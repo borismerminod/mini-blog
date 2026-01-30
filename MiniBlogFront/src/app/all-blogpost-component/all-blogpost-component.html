@@ -2,11 +2,10 @@
 
 <!--<p *ngIf="loading">Chargement...</p>
 <p *ngIf="error">{{ error }}</p>-->
-
 <div *ngFor="let post of posts" class="card">
   <h3>{{ post.title }}</h3>
   <small>{{ post.createdAt}}</small>
   <p>{{ post.content }}</p>
 </div>
-
-<a class="fab" routerLink="/create" aria-label="Ajouter un post">+</a>
+<div>{{posts.length}} bananes</div>
+<a class="fab" routerLink="/posts/create" aria-label="Ajouter un post" (click)=debug()>+</a>
