@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  api:
+    image: mini-blog-back
+    container_name: mini-blog-back
+    ports:
+      - "8090:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection="Server=sqlserver,1433;Database=MiniBlogDb;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;Encrypt=False;"
+    #depends_on:
+    #  - sqlserver
+    #  - db-init
+    volumes:
+      - ./wait-for-it.sh:/app/wait-for-it.sh
+    entrypoint: ["/app/wait-for-it.sh", "sqlserver:1433", "--", "dotnet", "MiniBlogAPI.dll"]
+    #entrypoint: ["dotnet", "MiniBlogAPI.dll"]
+    restart: unless-stopped
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mini-blog-sql
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd' -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  db-init:
+    image: mcr.microsoft.com/mssql-tools
+    container_name: mini-blog-sql-init
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    volumes:
+      - ./docker/init.sql:/init.sql:ro
+      - ./wait-for-it.sh:/wait-for-it.sh
+    entrypoint: ["/wait-for-it.sh", "sqlserver:1433", "--",
+                 "/opt/mssql-tools/bin/sqlcmd", "-S", "sqlserver:1433", "-U", "sa", "-P", "YourStrong!Passw0rd", "-i", "/init.sql"]
+    #entrypoint: >
+    #  bash -c "
+    #  /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P 'YourStrong!Passw0rd' -i /init.sql
+    #  "
+
+volumes:
+  sql_data:
