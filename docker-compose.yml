@@ -12,6 +12,8 @@ services:
       - "1433:1433"
     volumes:
       - sql_data:/var/opt/mssql
+    networks:
+      - mini-blog-net
     healthcheck:
       test:
         [
@@ -26,6 +28,8 @@ services:
   db-init:
     image: mcr.microsoft.com/mssql-tools
     container_name: mini-blog-sql-init
+    networks:
+    - mini-blog-net
     depends_on:
       sqlserver:
         condition: service_healthy
@@ -38,3 +42,6 @@ services:
 
 volumes:
   sql_data:
+networks:
+  mini-blog-net:
+    external: true

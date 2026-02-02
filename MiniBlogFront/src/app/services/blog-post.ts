@@ -14,7 +14,8 @@ export interface BlogPost {
 })
 export class BlogPostTs {
   
-  private apiUrl = "https://localhost:7172/api/posts"
+  //private apiUrl = "https://localhost:7172/api/posts"
+  private apiUrl = "https://localhost:8090/api/posts"
 
   constructor(private http:HttpClient)
   {
