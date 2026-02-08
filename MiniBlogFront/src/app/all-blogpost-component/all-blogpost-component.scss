@@ -1,4 +1,4 @@
-.card {
+/*.card {
   border-bottom: 1px solid #ddd;
   padding: 12px 0;
   min-height: 200px;
@@ -24,4 +24,85 @@
   background: white;
 
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}*/
+
+.posts-page {
+  padding: 24px;
+  background-color: #FAFAFA;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 32px;
+}
+
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centre les cartes */
+  gap: 20px;
+}
+
+mat-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+  padding: 16px;
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1976d2; /* accent bleu pro */
+  text-align: center;
+}
+
+mat-card-subtitle {
+  font-size: 0.9rem;
+  color: #555555;
+  text-align: center;
+}
+
+mat-card-content {
+  margin-top: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #1A1A1A;
+}
+
+.posts-count {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.95rem;
+  color: #888888;
+}
+
+.fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background-color: #1976d2;
+  color: #FFFFFF;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  background-color: #d27c19;
 }

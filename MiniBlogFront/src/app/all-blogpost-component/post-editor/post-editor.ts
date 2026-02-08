@@ -1,10 +1,13 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { BlogPost } from '../../services/blog-post';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-post-editor',
-  imports: [],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './post-editor.html',
   styleUrl: './post-editor.scss',
 })

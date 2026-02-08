@@ -1,11 +1,29 @@
-<h2>Articles Bob</h2>
+<div class="posts-page">
+  <!-- Titre de la page -->
+  <h2 class="page-title">Articles</h2>
 
-<!--<p *ngIf="loading">Chargement...</p>
-<p *ngIf="error">{{ error }}</p>-->
-<div *ngFor="let post of posts" class="card">
-  <h3>{{ post.title }}</h3>
-  <small>{{ post.createdAt}}</small>
-  <p>{{ post.content }}</p>
+  <!-- Loader / erreur -->
+  <!--<p *ngIf="loading">Chargement...</p>-->
+  <!--<p *ngIf="error">{{ error }}</p>-->
+
+  <!-- Conteneur de cartes centré -->
+  <div class="posts-container">
+    <mat-card *ngFor="let post of posts" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ post.title }}</mat-card-title>
+        <mat-card-subtitle>{{ post.createdAt | date:'longDate' }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ post.content }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Nombre de posts (optionnel) -->
+  <div class="posts-count">{{posts.length}} articles</div>
+
+  <!-- Bouton FAB -->
+  <a class="fab" mat-fab routerLink="/posts/create" aria-label="Ajouter un post">
+    +
+  </a>
 </div>
-<div>{{posts.length}} bananes</div>
-<a class="fab" routerLink="/posts/create" aria-label="Ajouter un post" (click)=debug()>+</a>

@@ -1,4 +1,4 @@
-<form [formGroup]="blogPostForm" (ngSubmit)="submit()">
+<!--<form [formGroup]="blogPostForm" (ngSubmit)="submit()">
 
   <div>
     <label for="title">Title</label>
@@ -26,5 +26,38 @@
     Create post
   </button>
 
-</form>
+</form>-->
+
+<div class="page-wrapper">
+  <form [formGroup]="blogPostForm" (ngSubmit)="submit()" class="post-form">
+  
+    <!-- Title -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput id="title" formControlName="title" />
+      <mat-error *ngIf="blogPostForm.controls.title.touched && blogPostForm.controls.title.invalid">
+        Title is required (min 3 characters)
+      </mat-error>
+    </mat-form-field>
+  
+    <!-- Content -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Content</mat-label>
+      <textarea matInput id="content" rows="6" formControlName="content"></textarea>
+      <mat-error *ngIf="blogPostForm.controls.content.touched && blogPostForm.controls.content.invalid">
+        Content is required (min 10 characters)
+      </mat-error>
+    </mat-form-field>
+  
+    <!-- Submit button -->
+    <div class="form-actions">
+      <button matButton="filled" type="submit" [disabled]="blogPostForm.invalid" class="submit-btn">
+        Create post
+      </button>
+    </div>
+  
+  </form>
+</div>
+
+
  
