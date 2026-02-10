@@ -1,0 +1,28 @@
+
+---
+description: Toujours consulter le dossier memory avant chaque interaction
+alwaysApply: true
+---
+
+# Contexte projet – dossier memory
+
+## Structure du projet
+
+- *Code source* : dossier super-app/ (React Native, Android uniquement pour le MVP)
+- *Fichiers de réflexion/contexte* : dossier memory/
+
+## Avant chaque interaction
+
+1. *Consulter systématiquement* les fichiers du dossier memory/ pour avoir le contexte du projet et de la conversation.
+2. Fichiers à lire selon les besoins : short_memory.md, past_interactions.md, long_term_memory.md, intentions.md, actions_tracking.md, brainstorming_prompt_improved.md.
+
+## À chaque fin d’action
+
+À la fin de chaque action de l’assistant, *mettre à jour systématiquement* les fichiers modifiables du dossier memory/ (short_memory, past_interactions, long_term_memory, intentions, actions_tracking) pour refléter ce qui s’est passé : résumé de l’échange, actions réalisées, intentions ou mémoires à jour.
+
+## Règles de modification
+
+- *Ne jamais modifier* le fichier memory/brainstorming_prompt_improved.md – il est en lecture seule.
+- *Les autres fichiers* du dossier memory doivent être mis à jour en fin d’action : short_memory.md, past_interactions.md, long_term_memory.md, intentions.md, actions_tracking.md.
+
+---

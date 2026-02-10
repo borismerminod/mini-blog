@@ -1,40 +1,271 @@
 
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
-@include mat.core();
+/* === Glass UI global theme (no Angular Material) === */
 
-html {
-  height: 100%;
-  @include mat.theme((
-    color: (
-      primary: mat.$blue-palette,
-      tertiary: mat.$orange-palette,
-    ),
-    typography: Roboto,
-    density: 1,
-  ));
+:root {
+  --app-bg-gradient: radial-gradient(circle at top left, rgba(255, 255, 255, 0.25), transparent 55%),
+                     radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.3), transparent 55%),
+                     linear-gradient(135deg, #020617, #020617);
+  --app-surface: rgba(15, 23, 42, 0.65);
+  --app-surface-soft: rgba(15, 23, 42, 0.5);
+  --app-border-subtle: rgba(148, 163, 184, 0.4);
+  --app-text-primary: #e5e7eb;
+  --app-text-secondary: #9ca3af;
+  --app-accent: #38bdf8;
+  --app-accent-soft: rgba(56, 189, 248, 0.2);
+  --app-danger: #f97373;
+  --app-backdrop-blur: 18px;
+  --app-radius-lg: 18px;
+  --app-radius-full: 999px;
+  --app-shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.55);
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-  height: 100%;
+  min-height: 100vh;
+  background: var(--app-bg-gradient);
+  color: var(--app-text-primary);
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
 }
-/* You can add global styles to this file, and also import other style files */
+
+app-root {
+  flex: 1;
+  display: block;
+}
+
+/* === Shared glassmorphism primitives === */
+
+.glass-page {
+  min-height: 100vh;
+  padding: 24px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.glass-shell {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.glass-card {
+  position: relative;
+  border-radius: var(--app-radius-lg);
+  padding: 20px 22px;
+  background: linear-gradient(135deg, var(--app-surface), var(--app-surface-soft));
+  border: 1px solid var(--app-border-subtle);
+  box-shadow: var(--app-shadow-soft);
+  backdrop-filter: blur(var(--app-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--app-backdrop-blur));
+  box-sizing: border-box;
+}
+
+.glass-card + .glass-card {
+  margin-top: 18px;
+}
+
+.glass-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.glass-card-subtitle {
+  font-size: 0.9rem;
+  color: var(--app-text-secondary);
+  margin: 0 0 12px;
+}
+
+.glass-card-content {
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+/* === Buttons === */
+
+.btn-glass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--app-radius-full);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.btn-glass-primary {
+  @extend .btn-glass;
+  background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.2), transparent 65%),
+              linear-gradient(135deg, #0ea5e9, #6366f1);
+  border-color: rgba(191, 219, 254, 0.6);
+  color: #f9fafb;
+  box-shadow: 0 16px 35px rgba(37, 99, 235, 0.45);
+}
+
+.btn-glass-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.6);
+}
+
+.btn-glass-primary:disabled,
+.btn-glass-primary[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-glass-ghost {
+  @extend .btn-glass;
+  background: rgba(15, 23, 42, 0.2);
+  border-color: var(--app-border-subtle);
+  color: var(--app-text-secondary);
+}
+
+.btn-glass-ghost:hover {
+  background: rgba(15, 23, 42, 0.35);
+  color: var(--app-text-primary);
+}
+
+.btn-glass:focus-visible {
+  outline: 2px solid rgba(248, 250, 252, 0.85);
+  outline-offset: 2px;
+}
+
+/* Floating primary action (ex- FAB) */
+
+.btn-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  padding: 0;
+  font-size: 26px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+}
+
+@media (min-width: 768px) {
+  .btn-fab {
+    right: 40px;
+    bottom: 32px;
+  }
+}
+
+/* === Forms === */
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.post-form {
+  width: 100%;
+  max-width: 720px;
+  @extend .glass-card;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.form-subtitle {
+  font-size: 0.9rem;
+  color: var(--app-text-secondary);
+  margin-bottom: 10px;
+}
+
+.field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--app-text-secondary);
+}
+
+.glass-input {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.4);
+  padding: 10px 14px;
+  color: var(--app-text-primary);
+  font: inherit;
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.55);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.glass-input::placeholder {
+  color: rgba(148, 163, 184, 0.7);
+}
+
+.glass-input:focus {
+  border-color: rgba(56, 189, 248, 0.9);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.9), 0 0 0 6px var(--app-accent-soft);
+  background: rgba(15, 23, 42, 0.75);
+}
+
+textarea.glass-input {
+  border-radius: 18px;
+  min-height: 140px;
+  resize: vertical;
+}
+
+.error-text {
+  font-size: 0.8rem;
+  color: var(--app-danger);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 8px;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 600px) {
+  .posts-page {
+    padding: 20px 12px 80px;
+  }
+
+  .post-form {
+    padding: 18px 14px;
+  }
+}
+
+/* You can add additional global styles below if needed */
