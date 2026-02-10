@@ -1,18 +1,60 @@
-<div>
-    <form id="post-editor-form" action="">
-        <div class="post-editor-row">
-            <label for="post-editor-title">Title</label>
-            <input id="post-editor-title" type="text" value="{{title}}">
-        </div>
-        <div class="post-editor-row">
-             <label for="post-editor-date">Creation date</label>
-            <input id="post-editor-date" type="text" value="{{createdAt}}">
-        </div>
-        <div class="post-editor-row">
-            <label for="post-editor-content">Content</label>
-            <textarea id="post-editor-content" value="{{content}}"></textarea>
-        </div>
-        <button id="post-editor-save">Save</button>
-        <button id="post-editor-save" (click)="onCloseClicked($event)">Close</button>
-    </form>
-</div>-
+<div class="page-wrapper">
+  <form id="post-editor-form" class="post-form">
+    <div class="form-header">
+      <h2 class="form-title">Éditer l’article</h2>
+      <p class="form-subtitle">
+        Modifie le titre, la date de création ou le contenu avant de sauvegarder.
+      </p>
+    </div>
+
+    <div class="field-wrapper">
+      <label for="post-editor-title" class="field-label">Titre</label>
+      <input
+        id="post-editor-title"
+        type="text"
+        class="glass-input"
+        [(ngModel)]="title"
+        name="title"
+      />
+    </div>
+
+    <div class="field-wrapper">
+      <label for="post-editor-date" class="field-label">Date de création</label>
+      <input
+        id="post-editor-date"
+        type="date"
+        class="glass-input"
+        [(ngModel)]="createdAt"
+        name="createdAt"
+      />
+    </div>
+
+    <div class="field-wrapper">
+      <label for="post-editor-content" class="field-label">Contenu</label>
+      <textarea
+        id="post-editor-content"
+        class="glass-input"
+        rows="6"
+        [(ngModel)]="content"
+        name="content"
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="button"
+        class="btn-glass-ghost"
+        (click)="onCloseClicked($event)"
+      >
+        Fermer
+      </button>
+      <button
+        type="button"
+        class="btn-glass-primary"
+        (click)="onSaveClicked($event)"
+      >
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

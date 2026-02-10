@@ -1,29 +1,47 @@
-<div class="posts-page">
-  <!-- Titre de la page -->
-  <h2 class="page-title">Articles TEST</h2>
+<section class="posts-page glass-page">
+  <div class="glass-shell">
+    <header class="posts-header">
+      <h1 class="page-title">Mini Blog</h1>
+      <p class="page-subtitle">
+        {{ posts.length }} {{ posts.length === 1 ? 'article publié' : 'articles publiés' }}
+      </p>
+    </header>
 
-  <!-- Loader / erreur -->
-  <!--<p *ngIf="loading">Chargement...</p>-->
-  <!--<p *ngIf="error">{{ error }}</p>-->
+    <!-- Loader / erreur -->
+    <div class="status" *ngIf="loading || error">
+      <p *ngIf="loading" class="status-text">Chargement des articles...</p>
+      <p *ngIf="error" class="status-text status-error">{{ error }}</p>
+    </div>
 
-  <!-- Conteneur de cartes centré -->
-  <div class="posts-container">
-    <mat-card *ngFor="let post of posts" appearance="outlined">
-      <mat-card-header>
-        <mat-card-title>{{ post.title }}</mat-card-title>
-        <mat-card-subtitle>{{ post.createdAt | date:'longDate' }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        {{ post.content }}
-      </mat-card-content>
-    </mat-card>
+    <!-- Conteneur de cartes -->
+    <div class="posts-container">
+      <article
+        class="post-card glass-card"
+        *ngFor="let post of posts"
+      >
+        <header class="post-card-header">
+          <h2 class="glass-card-title">{{ post.title }}</h2>
+          <p class="glass-card-subtitle">
+            {{ post.createdAt | date: 'longDate' }}
+          </p>
+        </header>
+        <div class="glass-card-content">
+          {{ post.content }}
+        </div>
+      </article>
+
+      <p class="empty-text" *ngIf="!loading && !error && posts.length === 0">
+        Aucun article pour le moment. Crée ton premier post pour démarrer ton mini blog.
+      </p>
+    </div>
   </div>
 
-  <!-- Nombre de posts (optionnel) -->
-  <div class="posts-count">{{posts.length}} articles</div>
-
-  <!-- Bouton FAB -->
-  <a class="fab" mat-fab routerLink="/posts/create" aria-label="Ajouter un post">
+  <!-- Bouton d’ajout (ex-FAB) -->
+  <a
+    class="btn-glass-primary btn-fab"
+    routerLink="/posts/create"
+    aria-label="Ajouter un post"
+  >
     +
   </a>
-</div>
+</section>

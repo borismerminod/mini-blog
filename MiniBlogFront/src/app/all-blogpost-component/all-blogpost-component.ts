@@ -2,14 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BlogPost, BlogPostTs } from '../services/blog-post';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatCardModule} from '@angular/material/card';
-
 
 @Component({
   selector: 'app-all-blogpost-component',
-  imports: [CommonModule, RouterModule, MatToolbarModule, MatSlideToggleModule, MatCardModule],
+  imports: [CommonModule, RouterModule],
   standalone: true,
   templateUrl: './all-blogpost-component.html',
   styleUrl: './all-blogpost-component.scss',

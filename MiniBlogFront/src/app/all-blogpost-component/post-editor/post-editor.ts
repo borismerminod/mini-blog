@@ -1,13 +1,13 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { BlogPost } from '../../services/blog-post';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-post-editor',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './post-editor.html',
   styleUrl: './post-editor.scss',
 })
@@ -15,14 +15,14 @@ export class PostEditor {
 
   protected title : string
   protected content : string
-  protected createdAt : Date
+  protected createdAt : string
 
 
   constructor()
   {
-    this.title = ""
-    this.content = ""
-    this.createdAt = new Date()
+    this.title = '';
+    this.content = '';
+    this.createdAt = new Date().toISOString().substring(0, 10);
   }
 
   @Output() close = new EventEmitter<Event>()

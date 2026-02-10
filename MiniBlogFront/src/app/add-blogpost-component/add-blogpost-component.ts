@@ -3,22 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { BlogPostTs } from '../services/blog-post';
 import { Router, RouterModule } from '@angular/router';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-add-blogpost-component',
   standalone: true,
-  imports: [
-    CommonModule, 
-    ReactiveFormsModule, 
-    RouterModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './add-blogpost-component.html',
   styleUrl: './add-blogpost-component.scss',
 })

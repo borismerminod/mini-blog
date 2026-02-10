@@ -59,55 +59,9 @@ button {
   }
 }*/
 
-.page-wrapper {
-  display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center;     /* centre verticalement */
-  min-height: 100vh;       /* prend toute la hauteur de la fenêtre */
-  background-color: #FAFAFA; /* même fond que la page blog */
-  padding: 16px;
-}
-
-.post-form {
-  min-width: 600px;
-  margin: 0 auto;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  background-color: #FAFAFA; /* fond doux comme la page des blogs */
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-  min-height: 400px;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.submit-btn.mat-mdc-button-filled {
-  background-color: #1976d2; /* bleu principal */
-  color: white;
-  font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    background-color: #d27c19; /* complémentaire orange */
-    transform: scale(1.05);
-  }
-
-  &:disabled {
-    background-color: #90caf9;
-    color: #eee;
-    box-shadow: none;
-  }
-}
-
-
-
-/* Espacement et centrage du bouton */
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
-}
+/* Ce composant réutilise les styles globaux:
+   - .page-wrapper
+   - .post-form
+   - .field-wrapper, .field-label, .glass-input
+   - .form-actions, .btn-glass-primary
+   Définis dans src/styles.scss */
